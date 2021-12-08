@@ -1,5 +1,26 @@
 //Дэлгэцтэй ажиллах контроллер
-var uiController = (function(){})();
+var uiController = (function(){
+
+    var DOMstrings = {
+        inputType: '.add__type',
+        inputDescription: ".add__description",
+        inputValue: ".add__value",
+        addBtn: ".add__btn"
+    };
+    return{
+        getInput: function(){
+            return{
+                type: document.querySelector(DOMstrings.inputType).value,
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value
+            };
+        },
+
+        getDOMstrings: function(){
+            return DOMstrings;
+        }
+    };
+})();
 
 //Санхүүтэй ажиллах когтроллер
 var financeController = (function(){})();
@@ -8,9 +29,11 @@ var financeController = (function(){})();
 //Санхүүтэй ажиллах контроллер
 var appController = (function(uiController, financeController)
 {
+var DOM = uiController.getDOMstrings();
+
 var ctrlAddItem = function(){
-    //1. Оруулах өгөгдлийг дэлгэцээс олж авна.
-console.log('delgetsnees ugugdul awsn');
+//1. Оруулах өгөгдлийг дэлгэцээс олж авна.
+console.log(uiController.getInput());
 //2. Олж авсан өгөгдлүүдээ санхүүгийн контроллерт дамжуулж тэнд хадгална.
 
 //3. Олж авсан өгөгдлүүдээ веб дээрээ тохирох хэсэгт нь гаргана.
@@ -20,7 +43,7 @@ console.log('delgetsnees ugugdul awsn');
 //5. Эцсийн үлдэгдлийг дэлгэцэнд гаргана.
 }
 
-document.querySelector('.add__btn').addEventListener('click',function(){
+document.querySelector(DOM.addBtn).addEventListener('click',function(){
 ctrlAddItem();
 });
 document.addEventListener('keypress',function(event){
